@@ -16,8 +16,8 @@ router.post('/add-image', async function(req, res, next) {
      order: null
    }
    console.log(newBody);
-  await imagesService.saveImages(newBody)
-  res.send('Images Saved Successfully');
+  await imagesService.saveImages(newBody);
+  res.status(200).json('Images Saved Successfully');
 });
 
 
