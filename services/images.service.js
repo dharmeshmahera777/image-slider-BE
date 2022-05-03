@@ -29,6 +29,11 @@ const getPageData = async() => {
     return pageData[0];
 }
 
+const deleteImage = async(imageId) => {
+    await ImagesModel.remove({ _id: imageId })
+    return 'success';
+}
+
 
 const getAllImages = async() => {
     const images = await ImagesModel.find();
@@ -42,5 +47,6 @@ module.exports = {
     getAllImages,
     savePageData,
     getPageData,
-    updatePageData
+    updatePageData,
+    deleteImage
 }

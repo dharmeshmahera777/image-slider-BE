@@ -6,16 +6,13 @@ const imagesService = require("../services/images.service");
 /* GET users listing. */
 router.post('/add-image', async function(req, res, next) {
   const body = req.body;
-   console.log(req.body);
    const imageName = await uploadImage(body.imageUrl, body.fileName);
-   console.log(imageName);
    const newBody = {
      image: 'uploads/' + imageName,
      thumbImage: 'uploads/' + imageName,
      title: body.title,
      order: null
    }
-   console.log(newBody);
   await imagesService.saveImages(newBody);
   res.status(200).json('Images Saved Successfully');
 });
@@ -36,6 +33,12 @@ router.get('/getAllImages', async function(req, res, next) {
 router.get('/getPageData', async function(req, res, next) {
   let pageData = await imagesService.getPageData();
     res.send(pageData);
+});
+
+router.delete('/deleteImage/:imageId', async function(req, res, next) {
+  const params = req.params;
+  await imagesService.deleteImage(params.imageId);
+  res.status(200).json('Image Deleted Successfully');
 });
 
 
