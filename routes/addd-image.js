@@ -20,11 +20,22 @@ router.post('/add-image', async function(req, res, next) {
   res.status(200).json('Images Saved Successfully');
 });
 
+router.post('/save-pagedata', async function(req, res, next) {
+  const body = req.body;
+  await imagesService.updatePageData(body.pageDataId, body);
+  res.status(200).json('Page Data Saved Successfully');
+});
+
 
 router.get('/getAllImages', async function(req, res, next) {
   let images = await imagesService.getAllImages();
     res.send(images);
 
+});
+
+router.get('/getPageData', async function(req, res, next) {
+  let pageData = await imagesService.getPageData();
+    res.send(pageData);
 });
 
 

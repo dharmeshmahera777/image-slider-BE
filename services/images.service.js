@@ -1,4 +1,5 @@
 const ImagesModel = require("../models/images.model");
+const PageDataModel = require("../models/pageData.model");
 
 
 
@@ -7,6 +8,25 @@ const saveImages = async(body) => {
     await images.save().then((result) => {
         return result;
     })
+}
+
+const savePageData = async(body) => {
+    const images = new PageDataModel(body);
+    await images.save().then((result) => {
+        return result;
+    })
+}
+
+const updatePageData = async(pageDataId, body) => {
+    const result = await PageDataModel.updateOne({ _id: pageDataId }, {
+        $set: body
+    });
+    return result;
+}
+
+const getPageData = async() => {
+    const pageData = await PageDataModel.find();
+    return pageData[0];
 }
 
 
@@ -19,5 +39,8 @@ const getAllImages = async() => {
 
 module.exports = {
     saveImages,
-    getAllImages
+    getAllImages,
+    savePageData,
+    getPageData,
+    updatePageData
 }
