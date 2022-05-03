@@ -58,8 +58,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(4000, function() {
-  console.log('listening on 3000')
+app.listen(process.env.PORT || 4000, function() {
+  console.log('listening on 4000');
 })
 
 module.exports = app;
