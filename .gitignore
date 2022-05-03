@@ -22,7 +22,6 @@ all_logs/
 /uploads/pgn
 /uploads/camp_logos
 /uploads/user_profiles
-uploads/
 *.log
 *.gz
 package-lock.json
